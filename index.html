@@ -97,7 +97,7 @@ button,.navbutton,.btn,.small-icon,.smallpill{touch-action:manipulation;-webkit-
         <div id="rejectPanel" style="display:none;margin-top:13px"><div class="hunger-label">上一道为什么不合适？ <span class="muted xs" style="font-weight:400">可以跳过</span></div><div class="chips" id="rejectChips"><button class="chip" data-reason="price">太贵了</button><button class="chip" data-reason="spicy">不想吃辣</button><button class="chip" data-reason="oily">太油了</button><button class="chip" data-reason="repeat">吃过了</button><button class="chip" data-reason="dislike">不喜欢这类</button><button class="chip" data-reason="random">只是想换</button></div></div>
         <div class="row between" style="margin-top:12px"><button class="link-btn" id="reportThisDish">✎ 菜品/价格有误？</button><span class="fineprint">价格仅供参考，按实际支付为准</span></div>
       </article>
-      <details class="filter-fold panel" id="extraFilter"><summary>🎛️ 还想按心情、菜品类别挑选？ <span class="filter-summary-hint">展开筛选</span></summary><div class="filter-fold-inner"><div><div class="hunger-label">今天的心情 <span class="muted xs" style="font-weight:400">· 可选</span></div><div class="moodrow" id="moodChips"><button class="moodbtn on" data-mood="normal">🌿 随便吃点</button><button class="moodbtn" data-mood="tired">😮‍💨 有点累</button><button class="moodbtn" data-mood="happy">🥳 开心</button><button class="moodbtn" data-mood="save">🥹 想省钱</button></div></div><div><div class="hunger-label">偏好类型</div><div class="chips" id="categoryChips"><button class="chip selected" data-category="全部">全部</button><button class="chip" data-category="食堂">食堂</button><button class="chip" data-category="盖饭">盖饭</button><button class="chip" data-category="面食">面食</button><button class="chip" data-category="早餐">早餐</button><button class="chip" data-category="夜宵">夜宵</button><button class="chip" data-category="小吃">小吃</button><button class="chip" data-category="饮品">饮品</button><button class="chip" data-category="轻食">轻食</button></div></div></div></details>
+      <details class="filter-fold panel" id="extraFilter"><summary>🎛️ 还想按心情、菜品类别挑选？ <span class="filter-summary-hint">展开筛选</span></summary><div class="filter-fold-inner"><div><div class="hunger-label">今天的心情 <span class="muted xs" style="font-weight:400">· 可选</span></div><div class="moodrow" id="moodChips"><button class="moodbtn on" data-mood="normal">🌿 随便吃点</button><button class="moodbtn" data-mood="tired">😮‍💨 有点累</button><button class="moodbtn" data-mood="happy">🥳 开心</button><button class="moodbtn" data-mood="save">🥹 想省钱</button></div></div><div><div class="hunger-label">偏好类型</div><div class="chips" id="categoryChips"><button class="chip selected" data-category="全部">全部</button><button class="chip" data-category="食堂">食堂</button><button class="chip" data-category="盖饭">盖饭</button><button class="chip" data-category="面食">面食</button><button class="chip" data-category="早餐">早餐</button><button class="chip" data-category="夜宵">夜宵</button><button class="chip" data-category="小吃">小吃</button><button class="chip" data-category="饮品">饮品</button><button class="chip" data-category="甜品">甜品</button><button class="chip" data-category="轻食">轻食</button></div></div></div></details>
       <div class="sectionhead"><h2>今天玩点不一样 🎲</h2></div>
       <div class="challenge"><p class="sm muted" style="margin:0 0 12px">有时交给一点点随机，也挺有趣。所有挑战仍遵守预算和忌口。</p><div class="challenge-options"><button class="btn" data-challenge="random">🎲<br>命运饭轮</button><button class="btn" data-challenge="explore">🌱<br>尝点新的</button><button class="btn" data-challenge="save">💰<br>省钱挑战</button></div><div id="challengeNotice" class="sm muted" style="margin-top:9px;display:none"></div></div>
       <div class="sectionhead"><h2>最近吃了什么</h2><button class="link-btn" data-page="ledger">看全部 →</button></div><div class="panel" id="recentRecords"></div>
@@ -183,7 +183,7 @@ const meals=[
 ['炸鸡排',10,'小吃','🍗','单份参考估价。'],
 ['关东煮（3–4样）',8,'小吃','🍢','价格随选择食材变化。'],
 ['烤肠',4,'小吃','🌭','单根参考估价。'],
-['饭后小蛋糕',8,'小吃','🍰','甜点参考估价。'],
+['饭后小蛋糕',8,'甜品','🍰','甜点参考估价。'],
 ['锅贴／煎饺',10,'小吃','🥟','单份参考估价。'],
 ['鸡米花小份',9,'小吃','🍗','小份参考估价。'],
 ['酸奶',5,'饮品','🥛','普通杯装酸奶参考估价。'],
@@ -193,7 +193,7 @@ const meals=[
 ['奶茶（普通杯）',12,'饮品','🧋','普通杯预算价。'],
 ['美式咖啡',10,'饮品','☕','基础杯参考估价。'],
 ['拿铁',13,'饮品','☕','普通杯参考估价。'],
-['冰淇淋',5,'饮品','🍦','单份参考估价。'],
+['冰淇淋',5,'甜品','🍦','单份参考估价。'],
 ['水果杯',8,'饮品','🍉','小份参考估价。'],
 ['鸡腿饭',15,'盖饭','🍗','普通份参考估价。'],
 ['番茄鸡蛋盖饭',10,'盖饭','🍅','家常盖饭参考估价。'],
@@ -326,6 +326,46 @@ const campusMeals=[
 ['生乐汉堡套餐',14,'夜宵','🍔','三食堂·炸鸡翁：香辣鸡腿堡＋薯条＋可乐/雪碧，14元。'],
 ['生乐吉祥三堡套餐',16,'夜宵','🍔','三食堂·炸鸡翁：香辣鸡腿堡＋单层牛肉堡＋田园蔬菜堡，16元。']
 ];
+// 本批来源：原对话838条CSV中的F3-173至F3-207，已核对IMG_5406至IMG_5410。
+// 手撕鸭含米饭，以用户2026-11-22补充说明为准。追加保留旧菜单顺序与收藏/账本ID。
+const campusThirdFloorBatch = [
+  ["一食堂三楼：招牌原味猪肚鸡",14,"食堂","🍲","主食五选一：米饭、泡面、米线、粉丝、土豆粉。米饭免费续加。",{"id":"ahsnu-yishitang-F3-173","sourceId":"F3-173","canteen":"一食堂","floor":3,"window":14,"stall":"猪肚鸡","role":"complete","mealPeriods":["午餐","晚餐"],"source":"一食堂 · 三楼 · 14号窗口 · 猪肚鸡","provenance":"照片：IMG_5410.jpeg","includesRice":"optional","stapleOptions":["米饭","泡面","米线","粉丝","土豆粉"],"riceRefillFree":true}],
+  ["一食堂三楼：川香麻辣猪肚鸡",14,"食堂","🍲","主食五选一：米饭、泡面、米线、粉丝、土豆粉。米饭免费续加。",{"id":"ahsnu-yishitang-F3-174","sourceId":"F3-174","canteen":"一食堂","floor":3,"window":14,"stall":"猪肚鸡","role":"complete","mealPeriods":["午餐","晚餐"],"source":"一食堂 · 三楼 · 14号窗口 · 猪肚鸡","provenance":"照片：IMG_5410.jpeg","includesRice":"optional","stapleOptions":["米饭","泡面","米线","粉丝","土豆粉"],"riceRefillFree":true}],
+  ["一食堂三楼：可爱番茄猪肚鸡",14,"食堂","🍲","主食五选一：米饭、泡面、米线、粉丝、土豆粉。米饭免费续加。",{"id":"ahsnu-yishitang-F3-175","sourceId":"F3-175","canteen":"一食堂","floor":3,"window":14,"stall":"猪肚鸡","role":"complete","mealPeriods":["午餐","晚餐"],"source":"一食堂 · 三楼 · 14号窗口 · 猪肚鸡","provenance":"照片：IMG_5410.jpeg","includesRice":"optional","stapleOptions":["米饭","泡面","米线","粉丝","土豆粉"],"riceRefillFree":true}],
+  ["一食堂三楼：老坛酸菜猪肚鸡",14,"食堂","🍲","主食五选一：米饭、泡面、米线、粉丝、土豆粉。米饭免费续加。",{"id":"ahsnu-yishitang-F3-176","sourceId":"F3-176","canteen":"一食堂","floor":3,"window":14,"stall":"猪肚鸡","role":"complete","mealPeriods":["午餐","晚餐"],"source":"一食堂 · 三楼 · 14号窗口 · 猪肚鸡","provenance":"照片：IMG_5410.jpeg","includesRice":"optional","stapleOptions":["米饭","泡面","米线","粉丝","土豆粉"],"riceRefillFree":true}],
+  ["一食堂三楼：爽口藤椒猪肚鸡",14,"食堂","🍲","主食五选一：米饭、泡面、米线、粉丝、土豆粉。米饭免费续加。",{"id":"ahsnu-yishitang-F3-177","sourceId":"F3-177","canteen":"一食堂","floor":3,"window":14,"stall":"猪肚鸡","role":"complete","mealPeriods":["午餐","晚餐"],"source":"一食堂 · 三楼 · 14号窗口 · 猪肚鸡","provenance":"照片：IMG_5410.jpeg","includesRice":"optional","stapleOptions":["米饭","泡面","米线","粉丝","土豆粉"],"riceRefillFree":true}],
+  ["一食堂三楼：金汤酸辣猪肚鸡",14,"食堂","🍲","主食五选一：米饭、泡面、米线、粉丝、土豆粉。米饭免费续加。",{"id":"ahsnu-yishitang-F3-178","sourceId":"F3-178","canteen":"一食堂","floor":3,"window":14,"stall":"猪肚鸡","role":"complete","mealPeriods":["午餐","晚餐"],"source":"一食堂 · 三楼 · 14号窗口 · 猪肚鸡","provenance":"照片：IMG_5410.jpeg","includesRice":"optional","stapleOptions":["米饭","泡面","米线","粉丝","土豆粉"],"riceRefillFree":true}],
+  ["一食堂三楼：手撕鸭（半只）",15,"盖饭","🍗","半只手撕鸭，含米饭。",{"id":"ahsnu-yishitang-F3-179","sourceId":"F3-179","canteen":"一食堂","floor":3,"window":16,"stall":"手撕鸭","role":"complete","mealPeriods":["午餐","晚餐"],"source":"一食堂 · 三楼 · 16号窗口 · 手撕鸭","provenance":"照片：IMG_5409.jpeg；用户于2026-11-22补充确认：带米饭，覆盖原表“单点、不含主食待核实”的描述。","includesRice":true,"portion":"半只"}],
+  ["一食堂三楼：手撕鸭（整只）",29,"盖饭","🍗","整只手撕鸭，含米饭。",{"id":"ahsnu-yishitang-F3-180","sourceId":"F3-180","canteen":"一食堂","floor":3,"window":16,"stall":"手撕鸭","role":"complete","mealPeriods":["午餐","晚餐"],"source":"一食堂 · 三楼 · 16号窗口 · 手撕鸭","provenance":"照片：IMG_5409.jpeg；用户于2026-11-22补充确认：带米饭，覆盖原表“单点、不含主食待核实”的描述。","includesRice":true,"portion":"整只"}],
+  ["一食堂三楼：牛肉拉面",9,"面食","🍜","",{"id":"ahsnu-yishitang-F3-181","sourceId":"F3-181","canteen":"一食堂","floor":3,"window":null,"stall":"兰州拉面","role":"complete","mealPeriods":["午餐","晚餐"],"source":"一食堂 · 三楼 · 兰州拉面","provenance":"照片：IMG_5406.jpeg","includesRice":false}],
+  ["一食堂三楼：鸡蛋拉面",9,"面食","🍜","",{"id":"ahsnu-yishitang-F3-182","sourceId":"F3-182","canteen":"一食堂","floor":3,"window":null,"stall":"兰州拉面","role":"complete","mealPeriods":["午餐","晚餐"],"source":"一食堂 · 三楼 · 兰州拉面","provenance":"照片：IMG_5406.jpeg","includesRice":false}],
+  ["一食堂三楼：牛肉刀削面",9,"面食","🍜","",{"id":"ahsnu-yishitang-F3-183","sourceId":"F3-183","canteen":"一食堂","floor":3,"window":null,"stall":"兰州拉面","role":"complete","mealPeriods":["午餐","晚餐"],"source":"一食堂 · 三楼 · 兰州拉面","provenance":"照片：IMG_5406.jpeg","includesRice":false}],
+  ["一食堂三楼：鸡蛋刀削面",9,"面食","🍜","",{"id":"ahsnu-yishitang-F3-184","sourceId":"F3-184","canteen":"一食堂","floor":3,"window":null,"stall":"兰州拉面","role":"complete","mealPeriods":["午餐","晚餐"],"source":"一食堂 · 三楼 · 兰州拉面","provenance":"照片：IMG_5406.jpeg","includesRice":false}],
+  ["一食堂三楼：青菜拉面",9,"面食","🍜","",{"id":"ahsnu-yishitang-F3-185","sourceId":"F3-185","canteen":"一食堂","floor":3,"window":null,"stall":"兰州拉面","role":"complete","mealPeriods":["午餐","晚餐"],"source":"一食堂 · 三楼 · 兰州拉面","provenance":"照片：IMG_5406.jpeg","includesRice":false}],
+  ["一食堂三楼：麻辣牛肉面",12,"面食","🍜","",{"id":"ahsnu-yishitang-F3-186","sourceId":"F3-186","canteen":"一食堂","floor":3,"window":null,"stall":"兰州拉面","role":"complete","mealPeriods":["午餐","晚餐"],"source":"一食堂 · 三楼 · 兰州拉面","provenance":"照片：IMG_5406.jpeg","includesRice":false}],
+  ["一食堂三楼：酸菜牛肉面",12,"面食","🍜","",{"id":"ahsnu-yishitang-F3-187","sourceId":"F3-187","canteen":"一食堂","floor":3,"window":null,"stall":"兰州拉面","role":"complete","mealPeriods":["午餐","晚餐"],"source":"一食堂 · 三楼 · 兰州拉面","provenance":"照片：IMG_5406.jpeg","includesRice":false}],
+  ["一食堂三楼：葱油牛肉拌面",12,"面食","🍜","",{"id":"ahsnu-yishitang-F3-188","sourceId":"F3-188","canteen":"一食堂","floor":3,"window":null,"stall":"兰州拉面","role":"complete","mealPeriods":["午餐","晚餐"],"source":"一食堂 · 三楼 · 兰州拉面","provenance":"照片：IMG_5406.jpeg","includesRice":false}],
+  ["一食堂三楼：红烧牛肉面",13,"面食","🍜","",{"id":"ahsnu-yishitang-F3-189","sourceId":"F3-189","canteen":"一食堂","floor":3,"window":null,"stall":"兰州拉面","role":"complete","mealPeriods":["午餐","晚餐"],"source":"一食堂 · 三楼 · 兰州拉面","provenance":"照片：IMG_5406.jpeg","includesRice":false}],
+  ["一食堂三楼：牛肉烩面",14,"面食","🍜","",{"id":"ahsnu-yishitang-F3-190","sourceId":"F3-190","canteen":"一食堂","floor":3,"window":null,"stall":"兰州拉面","role":"complete","mealPeriods":["午餐","晚餐"],"source":"一食堂 · 三楼 · 兰州拉面","provenance":"照片：IMG_5406.jpeg","includesRice":false}],
+  ["一食堂三楼：西红柿鸡蛋面",10,"面食","🍜","",{"id":"ahsnu-yishitang-F3-191","sourceId":"F3-191","canteen":"一食堂","floor":3,"window":null,"stall":"兰州拉面","role":"complete","mealPeriods":["午餐","晚餐"],"source":"一食堂 · 三楼 · 兰州拉面","provenance":"照片：IMG_5407.jpeg","includesRice":false}],
+  ["一食堂三楼：牛肉炒拉面",13,"面食","🍜","",{"id":"ahsnu-yishitang-F3-192","sourceId":"F3-192","canteen":"一食堂","floor":3,"window":null,"stall":"兰州拉面","role":"complete","mealPeriods":["午餐","晚餐"],"source":"一食堂 · 三楼 · 兰州拉面","provenance":"照片：IMG_5407.jpeg","includesRice":false}],
+  ["一食堂三楼：牛肉炒刀削",13,"面食","🍜","",{"id":"ahsnu-yishitang-F3-193","sourceId":"F3-193","canteen":"一食堂","floor":3,"window":null,"stall":"兰州拉面","role":"complete","mealPeriods":["午餐","晚餐"],"source":"一食堂 · 三楼 · 兰州拉面","provenance":"照片：IMG_5407.jpeg","includesRice":false}],
+  ["一食堂三楼：牛肉干饺",13,"面食","🍜","",{"id":"ahsnu-yishitang-F3-194","sourceId":"F3-194","canteen":"一食堂","floor":3,"window":null,"stall":"兰州拉面","role":"complete","mealPeriods":["午餐","晚餐"],"source":"一食堂 · 三楼 · 兰州拉面","provenance":"照片：IMG_5407.jpeg","includesRice":false}],
+  ["一食堂三楼：牛肉汤饺",13,"面食","🍜","",{"id":"ahsnu-yishitang-F3-195","sourceId":"F3-195","canteen":"一食堂","floor":3,"window":null,"stall":"兰州拉面","role":"complete","mealPeriods":["午餐","晚餐"],"source":"一食堂 · 三楼 · 兰州拉面","provenance":"照片：IMG_5407.jpeg","includesRice":false}],
+  ["一食堂三楼：牛肉粉丝汤",13,"面食","🍜","",{"id":"ahsnu-yishitang-F3-196","sourceId":"F3-196","canteen":"一食堂","floor":3,"window":null,"stall":"兰州拉面","role":"complete","mealPeriods":["午餐","晚餐"],"source":"一食堂 · 三楼 · 兰州拉面","provenance":"照片：IMG_5407.jpeg","includesRice":false}],
+  ["一食堂三楼：牛肉泡馍",15,"面食","🍜","",{"id":"ahsnu-yishitang-F3-197","sourceId":"F3-197","canteen":"一食堂","floor":3,"window":null,"stall":"兰州拉面","role":"complete","mealPeriods":["午餐","晚餐"],"source":"一食堂 · 三楼 · 兰州拉面","provenance":"照片：IMG_5407.jpeg","includesRice":false}],
+  ["一食堂三楼：牛肉拌面",12,"面食","🍜","",{"id":"ahsnu-yishitang-F3-198","sourceId":"F3-198","canteen":"一食堂","floor":3,"window":null,"stall":"兰州拉面","role":"complete","mealPeriods":["午餐","晚餐"],"source":"一食堂 · 三楼 · 兰州拉面","provenance":"照片：IMG_5407.jpeg","includesRice":false}],
+  ["一食堂三楼：牛肉油泼面",13,"面食","🍜","",{"id":"ahsnu-yishitang-F3-199","sourceId":"F3-199","canteen":"一食堂","floor":3,"window":null,"stall":"兰州拉面","role":"complete","mealPeriods":["午餐","晚餐"],"source":"一食堂 · 三楼 · 兰州拉面","provenance":"照片：IMG_5407.jpeg","includesRice":false}],
+  ["一食堂三楼：西红柿鸡蛋盖浇面（饭）",13,"盖饭","🍚","面或米饭任选一种，同价。",{"id":"ahsnu-yishitang-F3-200","sourceId":"F3-200","canteen":"一食堂","floor":3,"window":null,"stall":"兰州拉面","role":"complete","mealPeriods":["午餐","晚餐"],"source":"一食堂 · 三楼 · 兰州拉面","provenance":"照片：IMG_5408.jpeg","includesRice":"optional","stapleOptions":["面","饭"]}],
+  ["一食堂三楼：酸辣土豆丝盖浇面（饭）",13,"盖饭","🍚","面或米饭任选一种，同价。",{"id":"ahsnu-yishitang-F3-201","sourceId":"F3-201","canteen":"一食堂","floor":3,"window":null,"stall":"兰州拉面","role":"complete","mealPeriods":["午餐","晚餐"],"source":"一食堂 · 三楼 · 兰州拉面","provenance":"照片：IMG_5408.jpeg","includesRice":"optional","stapleOptions":["面","饭"]}],
+  ["一食堂三楼：土豆牛肉盖浇饭（面）",14,"盖饭","🍚","面或米饭任选一种，同价。",{"id":"ahsnu-yishitang-F3-202","sourceId":"F3-202","canteen":"一食堂","floor":3,"window":null,"stall":"兰州拉面","role":"complete","mealPeriods":["午餐","晚餐"],"source":"一食堂 · 三楼 · 兰州拉面","provenance":"照片：IMG_5408.jpeg","includesRice":"optional","stapleOptions":["面","饭"]}],
+  ["一食堂三楼：大盘鸡盖浇面（饭）",14,"盖饭","🍚","面或米饭任选一种，同价。",{"id":"ahsnu-yishitang-F3-203","sourceId":"F3-203","canteen":"一食堂","floor":3,"window":null,"stall":"兰州拉面","role":"complete","mealPeriods":["午餐","晚餐"],"source":"一食堂 · 三楼 · 兰州拉面","provenance":"照片：IMG_5408.jpeg","includesRice":"optional","stapleOptions":["面","饭"]}],
+  ["一食堂三楼：青椒牛肉盖浇面（饭）",14,"盖饭","🍚","面或米饭任选一种，同价。",{"id":"ahsnu-yishitang-F3-204","sourceId":"F3-204","canteen":"一食堂","floor":3,"window":null,"stall":"兰州拉面","role":"complete","mealPeriods":["午餐","晚餐"],"source":"一食堂 · 三楼 · 兰州拉面","provenance":"照片：IMG_5408.jpeg","includesRice":"optional","stapleOptions":["面","饭"]}],
+  ["一食堂三楼：孜然牛肉盖浇饭（面）",14,"盖饭","🍚","面或米饭任选一种，同价。",{"id":"ahsnu-yishitang-F3-205","sourceId":"F3-205","canteen":"一食堂","floor":3,"window":null,"stall":"兰州拉面","role":"complete","mealPeriods":["午餐","晚餐"],"source":"一食堂 · 三楼 · 兰州拉面","provenance":"照片：IMG_5408.jpeg","includesRice":"optional","stapleOptions":["面","饭"]}],
+  ["一食堂三楼：蛋炒饭",10,"盖饭","🍚","",{"id":"ahsnu-yishitang-F3-206","sourceId":"F3-206","canteen":"一食堂","floor":3,"window":null,"stall":"兰州拉面","role":"complete","mealPeriods":["午餐","晚餐"],"source":"一食堂 · 三楼 · 兰州拉面","provenance":"照片：IMG_5408.jpeg（纸质告示）","includesRice":true}],
+  ["一食堂三楼：兰州炒饭",12,"盖饭","🍚","",{"id":"ahsnu-yishitang-F3-207","sourceId":"F3-207","canteen":"一食堂","floor":3,"window":null,"stall":"兰州拉面","role":"complete","mealPeriods":["午餐","晚餐"],"source":"一食堂 · 三楼 · 兰州拉面","provenance":"照片：IMG_5408.jpeg（纸质告示）","includesRice":true}]
+];
+campusMeals.push(...campusThirdFloorBatch);
 </script><script>'use strict';
 (() => {
     const $ = id => document.getElementById(id), esc = v => String(v !== null && v !== void 0 ? v : '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -379,8 +419,17 @@ const campusMeals=[
         write(USERS, users);
     } }
     function isCampus() { const p = profile(); return p.province === '安徽省' && p.school === '安徽师范大学'; }
-    function menu() { return (isCampus() ? campusMeals : meals).map((m, i) => ({ id: (isCampus() ? 'ahsnu' : 'generic') + '-' + i, name: m[0], price: num(m[1]), cat: m[2], emoji: m[3] || '🍚', desc: m[4] || '', school: isCampus() ? '安徽师范大学' : '通用参考', tags: tagsOf(m[0]), role: roleOf(m), source: isCampus() ? '手工收录参考价' : '通用估算价' })); }
-    function roleOf(m) { let n = m[0], c = m[2]; if (c === '饮品')
+    function menu() {
+        const campus = isCampus();
+        return (campus ? campusMeals : meals).map((m, i) => {
+            const detail = m[5] || {};
+            return { ...detail, id: detail.id || (campus ? 'ahsnu' : 'generic') + '-' + i,
+                name: m[0], price: num(m[1]), cat: m[2], emoji: m[3] || '🍚', desc: m[4] || '',
+                school: campus ? '安徽师范大学' : '通用参考', tags: tagsOf(m[0]), role: roleOf(m),
+                source: detail.source || (campus ? '手工收录参考价' : '通用估算价') };
+        });
+    }
+    function roleOf(m) { if (m[5] && m[5].role) return m[5].role; if (m[2] === '甜品') return 'dessert'; let n = m[0], c = m[2]; if (c === '饮品')
         return 'drink'; if (c === '小吃' || c === '夜宵')
         return 'snack'; if (/(?:豆芽|包菜|青椒豆皮|炒青菜|茄子豆角)＋米饭|^生乐黄焖时蔬$|^生乐瓦香(?:土豆|花菜|包菜)$|^生乐烤肉拌饭套餐$|^三素拼盘＋米饭$/.test(n))
         return 'side'; if (/^(生乐白煮蛋|生乐鲜肉锅贴|生乐鲜肉包|生乐素三鲜包|生乐鲜肉大煎包)$/.test(n))
@@ -415,13 +464,23 @@ const campusMeals=[
         el.removeAttribute('aria-current'); }); window.scrollTo({ top: 0, behavior: 'instant' }); render(); }
     document.querySelectorAll('[data-page]').forEach(el => el.addEventListener('click', () => pageTo(el.dataset.page)));
     function greeting() { const h = new Date().getHours(); return h < 10 ? '早安呀！记得吃早餐 🍳' : h < 15 ? '忙了一上午，先好好吃饭 🌿' : h < 21 ? '今天辛苦啦，晚饭吃点喜欢的' : '夜深啦，吃点合适的小食 🌙'; }
-    function mealEligible(m, p) { if (category !== '全部' && m.cat !== category)
-        return false; if (p === '早餐')
-        return m.cat === '早餐' || ['面食', '食堂'].includes(m.cat); if (p === '夜宵')
-        return m.cat === '夜宵' || m.cat === '小吃' || m.cat === '面食'; return !['早餐', '饮品', '夜宵'].includes(m.cat); }
-    function filteredPool() { const p = period(); let pool = menu().filter(m => mealEligible(m, p)); if (!pool.length)
-        pool = menu().filter(m => category === '全部' || m.cat === category); if (!pool.length)
-        pool = menu(); pool = pool.filter(m => m.role === 'complete' || (p === '夜宵' && m.role === 'snack')); const avoid = state.preferences.avoid || []; pool = pool.filter(m => !avoid.some(tag => tasteTerms(m).includes(tag))); return pool; }
+    function mealEligible(m, p) {
+        if (category !== '全部' && m.cat !== category) return false;
+        if (m.mealPeriods && !m.mealPeriods.includes(p)) return false;
+        // 用户主动选小吃、饮品、甜品时，只推荐该类；它们不作为默认正餐。
+        if (category === m.cat && ['小吃', '饮品', '甜品'].includes(category)) return true;
+        if (p === '早餐') return m.cat === '早餐' || ['面食', '食堂'].includes(m.cat);
+        if (p === '夜宵') return ['夜宵', '小吃', '面食'].includes(m.cat);
+        return !['早餐', '饮品', '甜品', '夜宵'].includes(m.cat);
+    }
+    function filteredPool() {
+        const p = period(), avoid = state.preferences.avoid || [];
+        return menu().filter(m => mealEligible(m, p))
+            .filter(m => m.role === 'complete' || m.role === 'main' ||
+                (category === m.cat && ['snack', 'drink', 'dessert'].includes(m.role)) ||
+                (p === '夜宵' && m.role === 'snack'))
+            .filter(m => !avoid.some(tag => tasteTerms(m).includes(tag)));
+    }
     function score(m) {
         const price = m.price, budget = dailyBudget(), votes = state.learning !== false ? (state.tasteVotes || {}) : {};
         let s = 0;
@@ -462,16 +521,22 @@ const campusMeals=[
             s += Math.random() * 16;
         return s;
     }
-    function pick() { var _a; let pool = filteredPool(); if (!pool.length) {
-        current = null;
-        renderRecommendation();
-        return;
-    } let possible = pool.filter(m => !rejected.has(m.id)); if (!possible.length) {
-        rejected.clear();
-        possible = pool;
-    } const sorted = possible.map(m => ({ m, s: score(m) })).sort((a, b) => b.s - a.s); current = ((_a = sorted[0]) === null || _a === void 0 ? void 0 : _a.m) || null; renderRecommendation(); }
+    function chooseMeal(pool) {
+        if (!pool.length) return null;
+        const affordable = pool.filter(m => m.price <= dailyBudget());
+        let candidates = affordable.length ? affordable : pool;
+        // 预算不足或主动省钱时先选低价，再在同价内考虑偏好和换菜。
+        if (!affordable.length || mood === 'save' || challenge === 'save') {
+            const cheapest = Math.min(...candidates.map(m => m.price));
+            candidates = candidates.filter(m => m.price === cheapest);
+        }
+        let possible = candidates.filter(m => !rejected.has(m.id));
+        if (!possible.length) { candidates.forEach(m => rejected.delete(m.id)); possible = candidates; }
+        return possible.map(m => ({ m, s: score(m) })).sort((a, b) => b.s - a.s)[0].m;
+    }
+    function pick() { current = chooseMeal(filteredPool()); renderRecommendation(); }
     function explain(m) { if (!m)
-        return '暂无适合的菜品，请切换分类或学校。'; if (challenge === 'random')
+        return '当前菜单不完整，暂没有符合所选类别、餐次和口味限制的菜品；可以更换筛选或稍后补充菜单。'; if (challenge === 'random')
         return '命运饭轮抽到了这道！你仍可以自由换一道。'; if (challenge === 'explore')
         return '今天试试不一样的口味？这道菜在你的近期记录里不常出现。'; if (challenge === 'save')
         return '今天的省钱挑战：优先找价格更友好的食物。'; if (state.favorites.some(f => f.id === m.id))
@@ -806,7 +871,7 @@ const campusMeals=[
     }
     function renderMyReviews() { const node = $('myReviews'); if (!node)
         return; const reviews = (state.dishReviews || []).slice().sort((a, b) => (b.updated || b.created || '').localeCompare(a.updated || a.created || '')); $('myReviewCount').textContent = reviews.length + ' 次体验'; node.innerHTML = reviews.length ? reviews.slice(0, 6).map(r => `<div class="review-library-item"><span class="review-lib-icon">✦</span><div class="grow"><strong>${esc(r.dishName)}</strong><div class="xs muted">${esc((r.tags || []).slice(0, 3).join(' · ') || REVIEW_METRICS.filter(x => r[x.id]).map(x => x.title + ': ' + r[x.id] + '★').join(' · ') || '已有评价')}</div></div><button class="link-btn" data-review-record="${esc(r.recordId)}">修改评价</button></div>`).join('') : '<div class="empty">一顿饭，一点小感受。吃过之后可以留下属于你的口味记忆。</div>'; }
-    function renderRecommendation() { const m = current; $('recommendName').textContent = m ? m.name : '暂时没有合适的推荐'; $('recommendEmoji').textContent = m ? m.emoji : '🍽️'; $('recommendPrice').textContent = m ? money(m.price) : '—'; $('recommendSource').textContent = m ? `${m.school} · ${m.source}` : '可以更换分类'; $('recommendDescription').textContent = m ? m.desc : ''; $('recommendWhy').textContent = explain(m); $('recommendMeta').innerHTML = m ? `<span>${esc(m.cat)}</span><span>${esc(m.role === 'complete' ? '完整餐食 / 主食' : m.role === 'side' ? '配菜' : m.role === 'drink' ? '饮品' : '小食')}</span><span>热量未核实</span>` : ''; renderDishInsights(m); renderCommunityInsights(m); $('recommendTag').textContent = challenge ? ({ random: '命运饭轮', explore: '尝鲜挑战', save: '省钱挑战' }[challenge]) : '为你推荐'; $('favoriteToggle').classList.toggle('on', !!m && state.favorites.some(f => f.id === m.id)); $('favoriteToggle').textContent = m && state.favorites.some(f => f.id === m.id) ? '♥' : '♡'; $('eatRecommend').disabled = !m; $('favoriteToggle').disabled = !m; $('reportThisDish').disabled = !m; }
+    function renderRecommendation() { const m = current; $('recommendName').textContent = m ? m.name : '暂时没有合适的推荐'; $('recommendEmoji').textContent = m ? m.emoji : '🍽️'; $('recommendPrice').textContent = m ? money(m.price) : '—'; $('recommendSource').textContent = m ? `${m.school} · ${m.source}` : '可以更换分类'; $('recommendDescription').textContent = m ? m.desc : ''; $('recommendWhy').textContent = explain(m); $('recommendMeta').innerHTML = m ? `<span>${esc(m.cat)}</span><span>${esc(m.role === 'complete' ? '完整餐食 / 主食' : m.role === 'side' ? '配菜' : m.role === 'main' ? '主菜' : m.role === 'drink' ? '饮品' : m.role === 'dessert' ? '甜品' : '小食')}</span>` : ''; renderDishInsights(m); renderCommunityInsights(m); $('recommendTag').textContent = challenge ? ({ random: '命运饭轮', explore: '尝鲜挑战', save: '省钱挑战' }[challenge]) : '为你推荐'; $('favoriteToggle').classList.toggle('on', !!m && state.favorites.some(f => f.id === m.id)); $('favoriteToggle').textContent = m && state.favorites.some(f => f.id === m.id) ? '♥' : '♡'; $('eatRecommend').disabled = !m; $('favoriteToggle').disabled = !m; $('reportThisDish').disabled = !m; }
     function renderHome() { const b = balance(), total = spent(monthKey()); $('greeting').textContent = greeting(); $('greetingSub').textContent = '不知道吃什么？让饭搭子帮你挑一顿。'; $('balanceHome').textContent = money(b); $('dailyHome').textContent = money(dailyBudget()); $('budgetProgress').style.width = (state.budget ? Math.min(100, total / state.budget * 100) : 0) + '%'; $('budgetProgressPercent').textContent = (state.budget ? Math.round(total / state.budget * 100) : 0) + '%'; $('budgetProgressText').textContent = b < 0 ? '预算已超出，后面我们一起找实惠的选择' : '本月生活费使用进度'; $('periodCaption').textContent = period() + ' · ' + (isCampus() ? '安师大校园菜单' : '通用参考菜单'); document.querySelectorAll('[data-hunger]').forEach(e => e.classList.toggle('selected', e.dataset.hunger === hunger)); document.querySelectorAll('[data-mood]').forEach(e => e.classList.toggle('on', e.dataset.mood === mood)); document.querySelectorAll('[data-category]').forEach(e => e.classList.toggle('selected', e.dataset.category === category)); if (!current)
         pick();
     else
@@ -998,7 +1063,7 @@ const campusMeals=[
         rejected.add(previous.id); $('rejectPanel').style.display = 'none'; if (reason === 'spicy') {
         const pool = filteredPool().filter(m => !m.tags.includes('辣味') && !rejected.has(m.id));
         if (pool.length)
-            current = pool.sort((a, b) => score(b) - score(a))[0];
+            current = chooseMeal(pool);
     } render(); toast('收到啦，下次推荐会参考这次反馈'); }
     $('changeRecommend').onclick = () => { previous = current; if (current)
         rejected.add(current.id); pick(); $('rejectPanel').style.display = 'block'; };
